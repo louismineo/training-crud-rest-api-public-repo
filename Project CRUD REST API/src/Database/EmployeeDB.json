@@ -1,0 +1,46 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "name": "Albert",
+      "salary": 5555,
+      "department": "PS"
+    },
+    {
+      "id": 2,
+      "name": "Benny",
+      "salary": 4444,
+      "department": "HR"
+    },
+    {
+      "id": 3,
+      "name": "Charlie",
+      "salary": 3333,
+      "department": "HR"
+    },
+    {
+      "id": 4,
+      "name": "David",
+      "salary": 2222,
+      "department": "PS"
+    },
+    {
+      "id": 5,
+      "name": "Ethan",
+      "salary": 5555,
+      "department": "HR"
+    },
+    {
+      "id": 6,
+      "name": "Foxy",
+      "salary": 4444,
+      "department": "HR"
+    },
+    {
+      "id": 7,
+      "name": "Gary",
+      "salary": 1000,
+      "department": "PS"
+    }
+  ]
+}

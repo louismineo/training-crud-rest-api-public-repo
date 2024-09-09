@@ -1,0 +1,183 @@
+swagger: '2.0'
+info:
+  description: 'This is the api specs for the Employees'
+  version: '1.0.0'
+  title: 'Employee API'
+
+host: 'localhost'
+basePath: '/'
+tags:
+  - name: 'Employee'
+    description: 'Employee Operations'
+
+paths:
+  /employee:
+    get:
+      tags:
+        - 'Employee'
+      summary: 'Returns all the Employees'
+      operationId: 'GetAllEmployee'
+      produces:
+        - 'application/json'
+      parameters: []
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            $ref: '#/definitions/GetAllEmployeesResponse'
+        '500':
+          description: 'Server error'
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    post:
+      tags:
+        - 'Employee'
+      summary: 'Create a new Employee'
+      operationId: 'CreateEmployee'
+      produces:
+        - 'application/json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'Employee Creation request'
+          required: true
+          schema:
+            $ref: '#/definitions/EmployeeRequest'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            $ref: '#/definitions/EmployeeDef'
+        '500':
+          description: 'Server error'
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '400':
+          description: 'Bad request'
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /employee/{emp_id}:
+    get:
+      tags:
+        - 'Employee'
+      summary: 'Returns all the Employee'
+      operationId: 'GetEmployee'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'emp_id'
+          in: 'path'
+          description: 'ID of an Employee'
+          required: true
+          type: 'integer'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            $ref: '#/definitions/EmployeeDef'
+        '404':
+          description: 'Not Found'
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: 'Server error'
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    put:
+      tags:
+        - 'Employee'
+      summary: 'Update the Employee Details'
+      description: ''
+      operationId: 'getOrg'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'emp_id'
+          in: 'path'
+          description: 'ID of an Employee'
+          required: true
+          type: 'integer'
+        - in: 'body'
+          name: 'body'
+          description: 'Employee Update request'
+          required: true
+          schema:
+            $ref: '#/definitions/EmployeeRequest'
+      responses:
+        '200':
+          description: 'successful operation'
+          schema:
+            $ref: '#/definitions/EmployeeDef'
+        '304':
+          description: 'No Change'
+        '400':
+          description: 'Bad Request'
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '404':
+          description: 'Not Found'
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: 'Server error'
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    delete:
+      tags:
+        - 'Employee'
+      summary: 'Delete an Employee'
+      operationId: 'deleteEmployee'
+      produces:
+        - 'application/json'
+      parameters:
+        - name: 'emp_id'
+          in: 'path'
+          description: 'ID of an Employee'
+          required: true
+          type: 'integer'
+      responses:
+        '204':
+          description: 'successful Delete operation'
+        '404':
+          description: 'Not Found'
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        '500':
+          description: 'Server error'
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+definitions:
+  GetAllEmployeesResponse:
+    type: 'object'
+    properties:
+      employees:
+        type: 'array'
+        items:
+          $ref: '#/definitions/EmployeeDef'
+  EmployeeDef:
+    type: 'object'
+    properties:
+      id:
+        type: 'integer'
+      name:
+        type: 'string'
+      salary:
+        type: 'integer'
+      department:
+        type: 'string'
+        enum: ['HR', 'PS']
+  EmployeeRequest:
+    type: 'object'
+    properties:
+      name:
+        type: 'string'
+      salary:
+        type: 'integer'
+      department:
+        type: 'string'
+        enum: ['HR', 'PS']
+  ErrorResponse:
+    type: 'object'
+    properties:
+      errorMessage:
+        type: 'string'
